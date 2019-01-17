@@ -4,7 +4,7 @@ Convolution kernel for image processing. It can be used for blurring, sharpening
 To use it:
 	- $ python main.py
 		help
-	- $ python main.py 'imgsrc' 'kernel'
+	- $ python main.py 'imgsrc' 'kernel'\n
 		with kernel: 	sharpen
 				edgedetection1
 				edgedetection2

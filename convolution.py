@@ -33,6 +33,3 @@ def convolution(x, k):
                 res += x[idX] * k[idK]
         l.append(res)
     return l
-
-if __name__ == "__main__":
-    pass

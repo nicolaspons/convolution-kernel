@@ -3,6 +3,11 @@ from PIL import Image
 import numpy as np
 
 sharpen = [0, -1, 0, -1, 5, -1, 0, -1, 0]
+edgedetection1 = [1, 0, -1, 0, 0, 0, -1, 0, 1]
+edgedetection2 = [0, 1, 0, 1, -4, 1, 0, 1, 0]
+edgedetection3 = [-1, -1, -1, -1, 8, -1, -1, -1, -1]
+boxblur = [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9]
+gaussianblur = [1/16, 1/8, 1/16, 1/8, 1/4, 1/8, 1/16, 1/8, 1/16]
                 
 if __name__ == "__main__":
     im = Image.open("ressources/orig.png")
@@ -10,23 +15,13 @@ if __name__ == "__main__":
     listim = list(im.getdata())
     listr, listg, listb = zip(*listim)
 
-    kernel = sharpen
+    kernel = edgedetection3
 
-    listr = convolution(listr, kernel)
-    listg = convolution(listg, kernel)
-    listb = convolution(listb, kernel)
+    listr = [int(i) for i in convolution(listr, kernel)]
+    listg = [int(i) for i in convolution(listg, kernel)]
+    listb = [int(i) for i in convolution(listb, kernel)]
 
     listim = list(zip(listr, listg, listb))
     im2 = Image.new(im.mode, im.size)
     im2.putdata(listim)
     im2.show()
-    """
-    vec = list(new.getdata())
-    new.show()
-    l = [x[0] for x in vec] 
-    res = convolution(l, sharpen)
-    newl = [(x, x, x) for x in res]
-    im2 = Image.new(im.mode, im.size)
-    im2.putdata(newl)
-    im2.show()
-    """
